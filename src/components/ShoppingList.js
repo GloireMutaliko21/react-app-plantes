@@ -1,6 +1,7 @@
 import React from "react";
 import { plantList } from '../data/plantList'
 import '../styles/ShoppingList.css'
+import CareScale from "./CareScale";
 
 function ShoppingList() {
     const tabl = [];
@@ -20,6 +21,8 @@ function ShoppingList() {
                     <li key={plant.id} className="lmj-plant-item">
                         {plant.name}
                         {plant.isSpecialOffer && <div className="lmj-sales">Soldes</div>}
+                        <CareScale careType="water" scaleValue={plant.water} />
+                        <CareScale careType="light" scaleValue={plant.light} />
                     </li>
                 ))}
             </ul>
