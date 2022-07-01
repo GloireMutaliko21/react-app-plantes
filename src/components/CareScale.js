@@ -3,23 +3,29 @@ import Sun from '../assets/sun.svg'
 import Water from '../assets/water.svg'
 
 function CareScale({ scaleValue, careType }) {
-	const range = [1, 2, 3]
-	const scaleType =
-		careType === 'light' ? (
-			<img src={Sun} alt='sun-icon' />
-		) : (
-			<img src={Water} alt='water-icon' />
-		)
+    const range = [1, 2, 3]
+    const scaleType =
+        careType === 'light' ? (
+            <img src={Sun} alt='sun-icon' />
+        ) : (
+            <img src={Water} alt='water-icon' />
+        )
 
-	return (
-		<div>
-			{range.map((rangeElem) =>
-				scaleValue >= rangeElem ? (
-					<span key={rangeElem.toString()}>{scaleType}</span>
-				) : null
-			)}
-		</div>
-	)
+    return (
+        <div>
+            {range.map((rangeElem) =>
+                scaleValue >= rangeElem ? (
+                    <span key={rangeElem.toString()} onClick={() => clickHundler(scaleValue, careType)}>{scaleType}</span>
+                ) : null
+            )}
+        </div>
+    )
+}
+
+function clickHundler(level, type) {
+    const niv = level === 1 ? 'peu' : level === 2 ? 'modérement' : 'beaucoup'
+    const etat = type === 'light' ? "de lumière" : "d'arrosage"
+    alert("Cette plante requiert " + niv + " " + etat)
 }
 
 export default CareScale
