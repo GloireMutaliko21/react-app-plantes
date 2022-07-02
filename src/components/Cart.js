@@ -10,18 +10,34 @@ function Cart() {
 
     return isOpen ? (
         <div className="lmj-cart">
-            <button onClick={() => setIsOpen(false)}>Fermer</button>
+            <button
+                className="lmj-cart-toggle-button"
+                onClick={() => setIsOpen(false)}
+            >
+                Fermer
+            </button>
             <h2>Panier</h2>
             <div>
                 Monstera : {monsteraPrice}€
-                <button onClick={() => updateCart(cart + 1)}>
+                <button
+                    className="lmj-cart-add-button "
+                    onClick={() => updateCart(cart + 1)}
+                >
                     Ajouter
                 </button>
             </div>
             <h3>Total : {monsteraPrice * cart}€</h3>
+            <button onClick={() => updateCart(0)}>Vider le panier</button>
         </div>
     ) : (
-        <button onClick={() => setIsOpen(true)}>Ouvrir le panier</button>
+        <div className="lmj-cart-closed">
+            <button
+                className="lmj-cart-toggle-button"
+                onClick={() => setIsOpen(true)}
+            >
+                Ouvrir le panier
+            </button>
+        </div>
     )
 }
 
