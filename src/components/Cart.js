@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/Cart.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Cart({ cart, updateCart }) {
     const [isOpen, setIsOpen] = useState(true)
@@ -8,7 +8,13 @@ function Cart({ cart, updateCart }) {
         (acc, plantType) => acc + plantType.amount * plantType.price,
         0
     )
+    // useEffect(() => {
+    //     alert(`J'aurai ${total}€ à payer 💸`)
+    // }, [total])
 
+    useEffect(() => {
+        document.title = `LMJ: ${total}€ d'achats`
+    }, [total])
     return isOpen ? (
         <div className="lmj-cart">
             <button
@@ -18,7 +24,7 @@ function Cart({ cart, updateCart }) {
                 Fermer
             </button>
             <h2>Panier</h2>
-            {cart.map(({name, price, amount}, index)=>(
+            {cart.map(({ name, price, amount }, index) => (
                 <div key={`${name}-${index}`}>
                     {name} {price}€ x {amount}
                 </div>
